@@ -1,4 +1,4 @@
-package com.eci.microframework;
+package com.eci.microframework.utilities;
 
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -55,6 +55,15 @@ public class URLParser {
 
 	public Map<String, String> getQueryParams() {
 		return new LinkedHashMap<>(queryParams);
+	}
+
+	public static Map<String, String> parseQueryParams(String query) {
+		Map<String, String> params = new LinkedHashMap<>();
+		if (query == null || query.isBlank()) {
+			return params;
+		}
+		parseQuery(query, params);
+		return params;
 	}
 
 	private static void parseQuery(String query, Map<String, String> dest) {
